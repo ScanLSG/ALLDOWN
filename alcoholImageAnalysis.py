@@ -8,6 +8,14 @@
 import cv2
 import numpy
 
+# main
+def main():
+    img_path = "C:\\codeImage\\lisa.jpg"     # the image path 
+    img_bgr = roi_anyRange(img_path)         # select the any range
+    getHSV(img_bgr)                          # convert image to HSV and get h,s,v
+
+    cv2.waitKey(0)                           # wait exit
+
 # select the any range 
 def roi_anyRange(img_path):
     img_org = cv2.imread(img_path)              # load original image
@@ -17,7 +25,7 @@ def roi_anyRange(img_path):
     img_roi = img_org[int(roi_range[1]) : int(roi_range[1]+roi_range[3]), int(roi_range[0]) : int(roi_range[0]+roi_range[2]), :]
     
     cv2.imshow("img_roi", img_roi)                              # show the roi image
-    cv2.imwrite("E:\\Code\\Python\\img_roi.jpg", img_roi)       # save the roi image
+    cv2.imwrite("img_roi.jpg", img_roi)       # save the roi image
     
     return img_roi                                              # return the roi image
 
@@ -30,14 +38,6 @@ def getHSV(img_bgr):
     print("the image H:", numpy.mean(h))
     print("the image V:", numpy.mean(v))
     print("the image S:", numpy.mean(s))
-
-# main
-def main():
-    img_path = "D:\\Code\\Python\\Python\\lisa.jpg"     # the image path 
-    img_bgr = roi_anyRange(img_path)            # select the any range
-    getHSV(img_bgr)                             # convert image to HSV and get h,s,v
-
-    cv2.waitKey(0)                              # wait exit
 
 if __name__ == '__main__':
     main()

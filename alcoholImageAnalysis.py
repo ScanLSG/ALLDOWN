@@ -25,10 +25,8 @@ def gui():
 # Processing image
 def ProcessingImage():
     imagePath = selectFile()            # Select picture from path
-    print("sssssssssssssssssssss:",imagePath)
     
-    if imagePath == "":     # if cancel the selection, then return
-        return
+    if imagePath == "": return          # if cancel the selection, then return
     
     imageROI = roi_anyRange(imagePath)  # select the interesting of the image
     getHSV(imageROI)                    # get the H, S, V values of the image respective.
@@ -60,9 +58,9 @@ def roi_anyRange(img_path):
     img_roi = img_org[int(roi_range[1]) : int(roi_range[1]+roi_range[3]), 
                       int(roi_range[0]) : int(roi_range[0]+roi_range[2]), :]    # (x_min, y_min, w, h)
     cv2.imshow("img_roi", img_roi)
-    cv2.imwrite("img_roi.jpg", img_roi)
+    # cv2.imwrite("img_roi.jpg", img_roi)
 
-    return img_roi          # return the roi image
+    return img_roi
 
 # convert image to HSV and get h,s,v
 def getHSV(img_bgr):
@@ -71,6 +69,11 @@ def getHSV(img_bgr):
     print("the image H:", numpy.mean(h))
     print("the image V:", numpy.mean(v))
     print("the image S:", numpy.mean(s))
+
+# plotting the trend graph
+def trendGraph():
+    return
+
 
 if __name__ == '__main__':
     main()

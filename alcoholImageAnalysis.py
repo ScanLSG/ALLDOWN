@@ -25,7 +25,7 @@ def roi_anyRange(img_path):
     img_roi = img_org[int(roi_range[1]) : int(roi_range[1]+roi_range[3]), int(roi_range[0]) : int(roi_range[0]+roi_range[2]), :]
     
     cv2.imshow("img_roi", img_roi)                              # show the roi image
-    cv2.imwrite("img_roi.jpg", img_roi)       # save the roi image
+    #cv2.imwrite("img_roi.jpg", img_roi)       # save the roi image
     
     return img_roi                                              # return the roi image
 

@@ -34,7 +34,5 @@ def selectFile():
     fileName = fd.askopenfilename(title = 'Open a file', initialdir = '.\\', filetypes = fileTypes) # allows a single fileselection
     # showinfo(title = 'Selected File', message = fileName)
 
-
-
 if __name__ == '__main__':
     main()

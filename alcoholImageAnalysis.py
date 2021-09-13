@@ -14,19 +14,7 @@ from tkinter import filedialog as fd
 
 # main
 def main():
-<<<<<<< HEAD:alcohol/LSG_alcoholImageAnalysis.py
-    img_path = "C:\\codeImage\\lisa.jpg"     # the image path 
-    img_bgr = roi_anyRange(img_path)            # select the any range
-    getHSV(img_bgr)                             # convert image to HSV and get h,s,v
-
-    cv2.waitKey(0)                              # wait exit
-
-# select the any range 
-def roi_anyRange(img_path):
-    img_org = cv2.imread(img_path)              # load original image
-=======
     gui()
->>>>>>> 9cf041791542249b9b96548e1bab140f20ba9d81:alcoholImageAnalysis.py
 
 #gui
 def gui():
@@ -38,12 +26,7 @@ def gui():
 def ProcessingImage():
     imagePath = selectFile()            # Select picture from path
     
-<<<<<<< HEAD:alcohol/LSG_alcoholImageAnalysis.py
-    cv2.imshow("img_roi", img_roi)                              # show the roi image
-    cv2.imwrite("img_roi.jpg", img_roi)       # save the roi image
-=======
     if imagePath == "": return          # if cancel the selection, then return
->>>>>>> 9cf041791542249b9b96548e1bab140f20ba9d81:alcoholImageAnalysis.py
     
     imageROI = roi_anyRange(imagePath)  # select the interesting of the image
     getHSV(imageROI)                    # get the H, S, V values of the image respective.
@@ -87,13 +70,10 @@ def getHSV(img_bgr):
     print("the image V:", numpy.mean(v))
     print("the image S:", numpy.mean(s))
 
-<<<<<<< HEAD:alcohol/LSG_alcoholImageAnalysis.py
-=======
 # plotting the trend graph
 def trendGraph():
     return
 
 
->>>>>>> 9cf041791542249b9b96548e1bab140f20ba9d81:alcoholImageAnalysis.py
 if __name__ == '__main__':
     main()

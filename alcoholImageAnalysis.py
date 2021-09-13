@@ -11,6 +11,8 @@ import cv2
 import numpy
 import tkinter as tk
 from tkinter import filedialog as fd
+import matplotlib.pyplot as plt
+import glob
 
 # main
 def main():
@@ -20,16 +22,21 @@ def main():
 def gui():
     mainWindow = createWindow('mainWindow', '500x500')
     ButtonGUIs(mainWindow)
+    
     mainWindow.mainloop()
 
 # Processing image
 def ProcessingImage():
     imagePath = selectFile()            # Select picture from path
-    
+
     if imagePath == "": return          # if cancel the selection, then return
     
     imageROI = roi_anyRange(imagePath)  # select the interesting of the image
-    getHSV(imageROI)                    # get the H, S, V values of the image respective.
+    HSVarray = getHSV(imageROI)         # get the H, S, V values of the image respective.
+
+    image_time = int(imagePath.split('/')[-1].replace('.jpg',''))
+    print(image_time)
+    trendGraph(image_time, HSVarray[0], HSVarray[1], HSVarray[2])
 
 # create a window
 def createWindow(windowName, windowSize):
@@ -44,6 +51,8 @@ def ButtonGUIs(mainWindow):
     quitWindow = tk.Button(mainWindow, text = 'quit', command = mainWindow.quit)
     openFile.pack(expand = True)
     quitWindow.pack(expand = True)
+
+#def exitWindows(): 
 
 # select File
 def selectFile():
@@ -69,11 +78,37 @@ def getHSV(img_bgr):
     print("the image H:", numpy.mean(h))
     print("the image V:", numpy.mean(v))
     print("the image S:", numpy.mean(s))
+    HSVarray = [numpy.mean(h), numpy.mean(v), numpy.mean(s)]
+    return HSVarray
 
 # plotting the trend graph
-def trendGraph():
-    return
+def trendGraph(image_time, H_value, S_value, V_value):
+    time_axis = image_time
+    print(time_axis)
+    H_values = H_value
+    S_values = S_value
+    V_values = V_value
 
+    plt.xlabel('Time')
+    plt.ylabel('HSV_value')
+    plt.title('the HSV trend graph')
+    plt.plot(time_axis, H_values, label = 'H')
+    plt.plot(time_axis, S_values, label = 'S')
+    plt.plot(time_axis, V_values, label = 'V')
+    plt.legend()
+    plt.plot(time_axis, H_value, color = 'blue', linestyle = 'dashed', linewidth = 3,
+            marker = 'o', markerfacecolor = 'blue', markersize = 12)
+    plt.plot(time_axis, S_value, color = 'red', linestyle = 'dashed', linewidth = 3,
+            marker = 'o', markerfacecolor = 'red', markersize = 12)
+    plt.plot(time_axis, V_value, color = 'green', linestyle = 'dashed', linewidth = 3,
+            marker = 'o', markerfacecolor = 'green', markersize = 12)
+    plt.xlim(0)
+    plt.ylim(0)
+    plt.show()
 
 if __name__ == '__main__':
+    #inputs = glob.glob(r'D:\Code\ALLDOWN\ALLDOWN\alcoholImage\*.jpg')
+   #for i in inputs:
+        #print(i.split('\\')[-1].replace('.jpg',''))
+    
     main()
